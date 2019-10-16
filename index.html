@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Text Editor With Emmet & Syntax Highlighter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ext-emmet.js"></script>
+  <script src="https://rawgithub.com/nightwing/emmet-core/master/emmet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ext-language_tools.js"></script>
+  
+</head>
+<body>
+  <!-- Editor -->
+  <div id="editor"></div>
+  <!-- Viewer -->
+  <iframe id="viewer" frameborder="0"></iframe>
+  
+  <!-- ACE Editor Scripts -->
+  <script type="text/javascript">
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+    editor.session.setTabSize(2);
+    document.getElementById('editor').style.fontSize='16px';
+    editor.setHighlightActiveLine(true);
+    editor.session.setUseWrapMode(true);
+
+    // Trigger auto Completion
+    ace.require("ace/ext/language_tools");
+     editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+
+    // Including Emmet to Editor  
+    var Emmet = require("ace/ext/emmet");
+    editor.setOption("enableEmmet", true);
+    editor.getSession().on('change', function() {
+    update();
+    });
+  </script>
+
+  <!-- Viewer Scripts -->
+  <script type="text/javascript">
+    function update()
+    {
+      var idoc = document.getElementById('viewer').contentWindow.document;
+
+      idoc.open();
+      idoc.write(editor.getValue());
+      idoc.close();
+    }
+  </script>
+
+</body>
+</html>
