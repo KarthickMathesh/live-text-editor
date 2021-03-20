@@ -26,6 +26,9 @@
     document.getElementById('editor').style.fontSize='16px';
     editor.setHighlightActiveLine(true);
     editor.session.setUseWrapMode(true);
+    editor.setShowPrintMargin(false);
+    editor.focus();
+    editor.gotoLine(1);
 
     // Trigger auto Completion
     ace.require("ace/ext/language_tools");
