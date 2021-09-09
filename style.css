@@ -10,7 +10,7 @@ html, body{
   right: 0;
   bottom: 0;
   left: 0;
-  width: 50%;
+  width: 70%;
   font-family: 'Cascadia Code';
   font-size: 16px;
   line-height: 1.5;
@@ -18,7 +18,7 @@ html, body{
 
 #viewer{
   position: absolute;
-  left: 50%;
+  left: 70%;
   height: 100vh;
-  width: 50%;
+  width: 30%;
 }
